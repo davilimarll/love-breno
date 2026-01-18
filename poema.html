@@ -101,7 +101,13 @@
             box-shadow: 0 0 50px rgba(255, 105, 180, 0.7);
         }
 
-        .back-btn {
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .back-btn, .next-btn {
             background: linear-gradient(135deg, #ff1493, #ff69b4);
             border: none;
             color: white;
@@ -112,10 +118,9 @@
             box-shadow: 0 0 20px rgba(255, 20, 147, 0.5);
             transition: all 0.3s ease;
             font-weight: bold;
-            margin-top: 1rem;
         }
 
-        .back-btn:hover {
+        .back-btn:hover, .next-btn:hover {
             transform: scale(1.1);
             box-shadow: 0 0 40px rgba(255, 20, 147, 0.8);
         }
@@ -128,7 +133,10 @@
         <div class="image-section">
             <img src="https://m.media-amazon.com/images/I/71WQR8UegcL._AC_UF1000,1000_QL80_.jpg" alt="Nosso Amor">
         </div>
-        <button class="back-btn" onclick="window.location.href='index.html'">Voltar</button>
+        <div class="button-group">
+            <button class="back-btn" onclick="window.location.href='index.html'">Voltar</button>
+            <button class="next-btn" onclick="window.location.href='pagina3.html'">Próxima 💕</button>
+        </div>
     </div>
 
     <audio id="audioPlayer" autoplay>
