@@ -184,10 +184,15 @@
                 console.log('Erro ao tocar áudio');
             });
             
-            // Aguarda um pouco e vai para próxima página
+            // Aguarda o áudio terminar
+            audio.onended = function() {
+                window.location.href = 'poema.html';
+            };
+            
+            // Fallback: se o áudio não terminar em 10 segundos, vai mesmo assim
             setTimeout(() => {
                 window.location.href = 'poema.html';
-            }, 3000);
+            }, 10000);
         }
     </script>
 </body>
