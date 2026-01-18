@@ -96,6 +96,7 @@
         .image-section img {
             max-width: 100%;
             height: auto;
+            max-height: 400px;
             border-radius: 20px;
             box-shadow: 0 0 40px rgba(255, 105, 180, 0.6),
                         0 0 80px rgba(255, 20, 147, 0.4);
@@ -147,7 +148,7 @@
             box-shadow: 0 0 40px rgba(255, 20, 147, 0.8);
         }
 
-        /* Responsível */
+        /* Responsivo */
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
@@ -169,7 +170,7 @@
     
     <div class="container">
         <div class="image-section">
-            <img src="Gemini_Generated_Image_lpnl5qlpnl5qlpnl.jpg" alt="Nosso Amor">
+            <img src="https://raw.githubusercontent.com/davilimarll/love-breno/main/Gemini_Generated_Image_lpnl5qlpnl5qlpnl.jpg" alt="Nosso Amor" onerror="console.log('Erro ao carregar imagem')">
         </div>
 
         <div class="content-section">
@@ -192,7 +193,7 @@
     </div>
 
     <audio id="audioPlayer" autoplay>
-        <source src="Lila-_1.mp3" type="audio/mpeg">
+        <source src="https://raw.githubusercontent.com/davilimarll/love-breno/main/Lila-_1_.mp3" type="audio/mpeg">
     </audio>
 
     <script>
@@ -204,6 +205,10 @@
             document.addEventListener('click', () => {
                 audio.play();
             }, { once: true });
+        });
+
+        window.addEventListener('load', () => {
+            audio.play();
         });
     </script>
 </body>
