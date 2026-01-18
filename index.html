@@ -133,19 +133,29 @@
             margin: 0 5px;
         }
 
-        /* Texto de instrução */
-        .click-text {
-            position: absolute;
-            bottom: 30px;
-            color: #ffb6c1;
-            font-size: 1rem;
-            opacity: 0.7;
-            animation: pulse 2s infinite;
+        /* Botão Clique Aqui */
+        .click-btn {
+            background: linear-gradient(135deg, #ff1493, #ff69b4);
+            border: none;
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-top: 2rem;
+            box-shadow: 0 0 30px rgba(255, 20, 147, 0.6);
+            transition: all 0.3s ease;
+            font-weight: bold;
+            letter-spacing: 1px;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
+        .click-btn:hover {
+            transform: scale(1.15);
+            box-shadow: 0 0 50px rgba(255, 20, 147, 0.9);
+        }
+
+        .click-btn:active {
+            transform: scale(0.95);
         }
     </style>
 </head>
@@ -157,34 +167,28 @@
         <h1>Hi, <span class="sparkle">✨</span>Breno<span class="sparkle">✨</span></h1>
         <p>Welcome</p>
         
-        <audio id="audioPlayer">
-            <source src="Lila.mp3" type="audio/mpeg">
-        </audio>
-        
-        <div class="click-text">Clique para continuar...</div>
+        <div class="audio-section">
+            <audio id="audioPlayer">
+                <source src="https://raw.githubusercontent.com/davilimarll/love-breno/main/Lila.mp3" type="audio/mpeg">
+            </audio>
+            <button class="click-btn" onclick="playAudioAndGoToNext()">Clique aqui 💕</button>
+        </div>
     </div>
 
     <script>
-        // Toca o áudio automaticamente
-        const audio = document.getElementById('audioPlayer');
-        
-        audio.play().catch(() => {
-            document.addEventListener('click', () => {
-                audio.play();
-            }, { once: true });
-        });
-        
-        window.addEventListener('load', () => {
-            audio.play();
-        });
-
-        // Clique para ir para próxima página
-        document.addEventListener('click', function() {
-            // Aguarda um pouco para garantir que o áudio começou
+        function playAudioAndGoToNext() {
+            const audio = document.getElementById('audioPlayer');
+            
+            // Toca o áudio
+            audio.play().catch(() => {
+                console.log('Erro ao tocar áudio');
+            });
+            
+            // Aguarda um pouco e vai para próxima página
             setTimeout(() => {
                 window.location.href = 'poema.html';
-            }, 1000);
-        });
+            }, 3000);
+        }
     </script>
 </body>
 </html>
