@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página 5 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #1a0000 0%, #2d0000 25%, #3d0000 50%, #2d0000 75%, #1a0000 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @keyframes falling-hearts {
+            0% {
+                transform: translateY(-10vh) translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes floating {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .heart-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .heart-background::before,
+        .heart-background::after {
+            content: '❤️';
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.1;
+            animation: falling-hearts linear infinite;
+        }
+
+        .heart-background::before {
+            animation-duration: 6s;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .heart-background::after {
+            animation-duration: 8s;
+            left: 80%;
+            animation-delay: 2s;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            padding: 2rem;
+        }
+
+        .image-section {
+            animation: floating 3s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+        }
+
+        .image-section img {
+            max-width: 100%;
+            max-height: 80vh;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 0 50px rgba(255, 105, 180, 0.7);
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #ff1493, #ff69b4);
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(255, 20, 147, 0.5);
+            transition: all 0.3s ease;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 40px rgba(255, 20, 147, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="heart-background"></div>
+    
+    <div class="container">
+        <div class="image-section">
+            <img src="https://i.pinimg.com/originals/62/d5/78/62d57853e9768595d803affdb44e6a35.gif" alt="Nosso Amor">
+        </div>
+        <button class="back-btn" onclick="window.location.href='pagina4.html'">Voltar</button>
+    </div>
+
+    <audio id="audioPlayer" autoplay>
+        <source src="https://raw.githubusercontent.com/davilimarll/love-breno/main/Lila%20(4).wav" type="audio/wav">
+    </audio>
+
+    <script>
+        const audio = document.getElementById('audioPlayer');
+        audio.play().catch(() => {
+            document.addEventListener('click', () => {
+                audio.play();
+            }, { once: true });
+        });
+    </script>
+</body>
+</html>
