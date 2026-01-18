@@ -95,23 +95,55 @@
 
         .image-section img {
             max-width: 90%;
-            max-height: 85vh;
+            max-height: 70vh;
             height: auto;
             border-radius: 20px;
             box-shadow: 0 0 50px rgba(255, 105, 180, 0.7);
         }
 
-        .back-btn {
-            background: linear-gradient(135deg, #ff1493, #ff69b4);
+        .button-group {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        .sim-btn, .nao-btn, .back-btn {
             border: none;
             color: white;
-            padding: 12px 30px;
-            font-size: 1rem;
+            padding: 15px 40px;
+            font-size: 1.1rem;
             border-radius: 25px;
             cursor: pointer;
             box-shadow: 0 0 20px rgba(255, 20, 147, 0.5);
             transition: all 0.3s ease;
             font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .sim-btn {
+            background: linear-gradient(135deg, #00d084, #1ad876);
+            box-shadow: 0 0 20px rgba(0, 208, 132, 0.6);
+        }
+
+        .sim-btn:hover {
+            transform: scale(1.15);
+            box-shadow: 0 0 40px rgba(0, 208, 132, 0.9);
+        }
+
+        .nao-btn {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.6);
+        }
+
+        .nao-btn:hover {
+            transform: scale(1.15);
+            box-shadow: 0 0 40px rgba(255, 107, 107, 0.9);
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, #ff1493, #ff69b4);
+            box-shadow: 0 0 20px rgba(255, 20, 147, 0.5);
             margin-top: 1rem;
         }
 
@@ -127,6 +159,10 @@
     <div class="container">
         <div class="image-section">
             <img src="https://sweezy-cursors.com/wp-content/uploads/cursor/milk-amp-mocha-bear-love/milk-mocha-bear-love-custom-cursor.png" alt="Nosso Amor">
+        </div>
+        <div class="button-group">
+            <button class="sim-btn" onclick="window.location.href='pagina4.html'">SIM 😍</button>
+            <button class="nao-btn" onclick="alert('Tem cer teza? 😊')">NÃO 😘</button>
         </div>
         <button class="back-btn" onclick="window.location.href='poema.html'">Voltar</button>
     </div>
