@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hi, Breno. Welcome 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #1a0000 0%, #2d0000 25%, #3d0000 50%, #2d0000 75%, #1a0000 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animação de corações caindo */
+        @keyframes falling-hearts {
+            0% {
+                transform: translateY(-10vh) translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes floating {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Corações de fundo */
+        .heart-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .heart-background::before,
+        .heart-background::after {
+            content: '❤️';
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.1;
+            animation: falling-hearts linear infinite;
+        }
+
+        .heart-background::before {
+            animation-duration: 6s;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .heart-background::after {
+            animation-duration: 8s;
+            left: 80%;
+            animation-delay: 2s;
+        }
+
+        /* Container principal */
+        .container {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+        }
+
+        /* Título com efeito de brilho */
+        h1 {
+            font-size: 4rem;
+            color: #ff69b4;
+            text-shadow: 0 0 30px rgba(255, 105, 180, 0.8),
+                         0 0 60px rgba(255, 20, 147, 0.6),
+                         0 0 90px rgba(220, 20, 60, 0.4);
+            margin-bottom: 2rem;
+            animation: floating 3s ease-in-out infinite;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        /* Subtítulo */
+        p {
+            font-size: 1.5rem;
+            color: #ffb6c1;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+        }
+
+        /* Controles de áudio */
+        .audio-section {
+            margin-top: 2rem;
+        }
+
+        audio {
+            width: 300px;
+            margin: 1rem 0;
+            accent-color: #ff1493;
+            display: none;
+        }
+
+        .audio-label {
+            display: block;
+            color: #ffb6c1;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        /* Botão de play */
+        .play-btn {
+            background: linear-gradient(135deg, #ff1493, #ff69b4);
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 1rem;
+            box-shadow: 0 0 20px rgba(255, 20, 147, 0.5);
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 40px rgba(255, 20, 147, 0.8);
+        }
+
+        .play-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Coração animado central */
+        .heart-icon {
+            font-size: 5rem;
+            animation: floating 2s ease-in-out infinite;
+            margin: 1rem 0;
+            filter: drop-shadow(0 0 15px rgba(255, 105, 180, 0.8));
+        }
+
+        /* Efeito de sparkles */
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .sparkle {
+            display: inline-block;
+            color: #ffd700;
+            animation: sparkle 1.5s ease-in-out infinite;
+            margin: 0 5px;
+        }
+
+        /* Mensagem de status do áudio */
+        .audio-status {
+            color: #ffb6c1;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="heart-background"></div>
+    
+    <div class="container">
+        <div class="heart-icon">💕</div>
+        <h1>Hi, <span class="sparkle">✨</span>Breno<span class="sparkle">✨</span></h1>
+        <p>Welcome</p>
+        
+        <div class="audio-section">
+            <audio id="audioPlayer">
+                <source src="Lila.mp3" type="audio/mpeg">
+                Seu navegador não suporta o elemento de áudio.
+            </audio>
+            <button class="play-btn" onclick="playAudio()">▶️ Tocar Áudio</button>
+            <div class="audio-status">🎵 O áudio está tocando automaticamente...</div>
+        </div>
+    </div>
+
+    <script>
+        function playAudio() {
+            const audio = document.getElementById('audioPlayer');
+            audio.play().catch(function(error) {
+                console.log('Erro ao tocar áudio:', error);
+            });
+        }
+
+        // Auto-play do áudio quando a página carregar
+        window.addEventListener('load', function() {
+            const audio = document.getElementById('audioPlayer');
+            // Tentar tocar automaticamente
+            const autoplayPromise = audio.play();
+            
+            if (autoplayPromise !== undefined) {
+                autoplayPromise
+                    .then(() => {
+                        console.log('Áudio tocando automaticamente! 🎵');
+                    })
+                    .catch(() => {
+                        console.log('Auto-play bloqueado. Clique no botão para tocar.');
+                    });
+            }
+        });
+
+        // Também tenta auto-play ao interagir com a página
+        document.addEventListener('click', function() {
+            const audio = document.getElementById('audioPlayer');
+            if (audio.paused) {
+                audio.play().catch(() => {
+                    console.log('Clique registrado, mas não conseguiu tocar.');
+                });
+            }
+        }, { once: true });
+    </script>
+</body>
+</html>
