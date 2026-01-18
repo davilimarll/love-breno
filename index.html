@@ -108,42 +108,7 @@
         }
 
         audio {
-            width: 300px;
-            margin: 1rem 0;
-            accent-color: #ff1493;
             display: none;
-        }
-
-        .audio-label {
-            display: block;
-            color: #ffb6c1;
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-            font-style: italic;
-        }
-
-        /* Botão de play */
-        .play-btn {
-            background: linear-gradient(135deg, #ff1493, #ff69b4);
-            border: none;
-            color: white;
-            padding: 12px 30px;
-            font-size: 1rem;
-            border-radius: 25px;
-            cursor: pointer;
-            margin-top: 1rem;
-            box-shadow: 0 0 20px rgba(255, 20, 147, 0.5);
-            transition: all 0.3s ease;
-            font-weight: bold;
-        }
-
-        .play-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 40px rgba(255, 20, 147, 0.8);
-        }
-
-        .play-btn:active {
-            transform: scale(0.95);
         }
 
         /* Coração animado central */
@@ -166,14 +131,6 @@
             animation: sparkle 1.5s ease-in-out infinite;
             margin: 0 5px;
         }
-
-        /* Mensagem de status do áudio */
-        .audio-status {
-            color: #ffb6c1;
-            font-size: 0.9rem;
-            margin-top: 1rem;
-            font-style: italic;
-        }
     </style>
 </head>
 <body>
@@ -184,50 +141,27 @@
         <h1>Hi, <span class="sparkle">✨</span>Breno<span class="sparkle">✨</span></h1>
         <p>Welcome</p>
         
-        <div class="audio-section">
-            <audio id="audioPlayer">
-                <source src="Lila.mp3" type="audio/mpeg">
-                Seu navegador não suporta o elemento de áudio.
-            </audio>
-            <button class="play-btn" onclick="playAudio()">▶️ Tocar Áudio</button>
-            <div class="audio-status">🎵 O áudio está tocando automaticamente...</div>
-        </div>
+        <audio id="audioPlayer">
+            <source src="Lila.mp3" type="audio/mpeg">
+        </audio>
     </div>
 
     <script>
-        function playAudio() {
-            const audio = document.getElementById('audioPlayer');
-            audio.play().catch(function(error) {
-                console.log('Erro ao tocar áudio:', error);
-            });
-        }
-
-        // Auto-play do áudio quando a página carregar
-        window.addEventListener('load', function() {
-            const audio = document.getElementById('audioPlayer');
-            // Tentar tocar automaticamente
-            const autoplayPromise = audio.play();
-            
-            if (autoplayPromise !== undefined) {
-                autoplayPromise
-                    .then(() => {
-                        console.log('Áudio tocando automaticamente! 🎵');
-                    })
-                    .catch(() => {
-                        console.log('Auto-play bloqueado. Clique no botão para tocar.');
-                    });
-            }
+        // Toca o áudio automaticamente sem nenhum clique necessário
+        const audio = document.getElementById('audioPlayer');
+        
+        // Tenta tocar assim que possível
+        audio.play().catch(() => {
+            // Se auto-play foi bloqueado, toca no primeiro clique/interação
+            document.addEventListener('click', () => {
+                audio.play();
+            }, { once: true });
         });
-
-        // Também tenta auto-play ao interagir com a página
-        document.addEventListener('click', function() {
-            const audio = document.getElementById('audioPlayer');
-            if (audio.paused) {
-                audio.play().catch(() => {
-                    console.log('Clique registrado, mas não conseguiu tocar.');
-                });
-            }
-        }, { once: true });
+        
+        // Também tenta quando a página carrega completamente
+        window.addEventListener('load', () => {
+            audio.play();
+        });
     </script>
 </body>
 </html>
